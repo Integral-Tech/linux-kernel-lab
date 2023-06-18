@@ -1,2 +1,2 @@
-# linux-kernel-lab
+# Linux Kernel Lab
 Integral's Linux Kernel Lab
