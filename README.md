@@ -2,6 +2,7 @@
 Integral's Linux Kernel Lab
 
 ## Lab 1: An AES256 encryption driver for character devices
+- Thanks to [kokke/tiny-AES-c](https://github.com/kokke/tiny-AES-c)
 ### How to build?
 ```bash
 git clone https://github.com/Integral-Tech/linux-kernel-lab.git
