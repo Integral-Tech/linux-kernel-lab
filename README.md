@@ -5,7 +5,7 @@ Integral's Linux Kernel Lab
 ### How to build?
 ```bash
 git clone https://github.com/Integral-Tech/linux-kernel-lab.git
-cd Lab1/module/
+cd linux-kernel-lab/Lab1/module/
 make
 ```
 ### How to install?
