@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# SPDX-FileCopyrightText: 2024 Integral <integral@member.fsf.org>
+#
+# SPDX-License-Identifier: GPL-2.0-only
+
 if [ ! -e /dev/encrypt ]; then
     echo "/dev/encrypt does not exists!"
     exit 1

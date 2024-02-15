@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Integral's Linux Kernel Lab
+Upstream-Contact: Integral <integral@member.fsf.org>
+Source: https://github.com/Integral-Tech/linux-kernel-lab
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...
