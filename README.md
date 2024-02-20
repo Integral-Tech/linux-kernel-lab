@@ -34,4 +34,4 @@ sudo ./test.sh
 ```
 
 ## License
-- Licensed under the [GNU General Public License, version 2](https://codeberg.org/Integral/linux-kernel-lab/src/branch/main/LICENSES/GPL-2.0-only.txt).
+- Licensed under the [GNU General Public License, version 2](LICENSES/GPL-2.0-only.txt).
