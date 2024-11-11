@@ -5,16 +5,19 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static inline void fd_close(int *fd) {
+static inline void fd_close(int *fd)
+{
 	if (*fd >= 0)
 		close(*fd);
 }
 
-static inline void file_close(FILE **fp) {
+static inline void file_close(FILE **fp)
+{
 	fclose(*fp);
 }
 
-static inline void free_ptr(void *ptr) {
+static inline void free_ptr(void *ptr)
+{
 	free(*(void **)ptr);
 }
 

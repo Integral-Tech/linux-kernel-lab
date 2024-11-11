@@ -28,7 +28,8 @@ int main()
 	ioctl(fd, SET_ENCRYPT);
 	ioctl(fd, START_WRITE);
 
-	__attribute__((cleanup(file_close))) FILE *input_file = fopen("2M_data_input", "rb");
+	__attribute__((cleanup(file_close)))
+	FILE *input_file = fopen("2M_data_input", "rb");
 	fseek(input_file, 0, SEEK_END);
 	size_t file_size = ftell(input_file);
 	fseek(input_file, 0, SEEK_SET);
@@ -56,7 +57,8 @@ int main()
 	printf("Successed to read from device %s, fd = %d\n", CDEV_PATH, fd);
 	ioctl(fd, RESET);
 
-	__attribute__((cleanup(file_close))) FILE *output_file = fopen("2M_data_output", "wb");
+	__attribute__((cleanup(file_close)))
+	FILE *output_file = fopen("2M_data_output", "wb");
 	fwrite(buffer, sizeof(uint8_t), file_size, output_file);
 
 	return 0;
