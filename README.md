@@ -7,7 +7,7 @@ SPDX-License-Identifier: GPL-2.0-only
 # Linux Kernel Lab
 Integral's Linux Kernel Lab
 
-[![status-badge](https://ci.codeberg.org/api/badges/13903/status.svg)](https://ci.codeberg.org/repos/13903)
+[![status-badge](https://ci.codeberg.org/api/badges/13904/status.svg)](https://ci.codeberg.org/repos/13904)
 
 ## Lab 1: An AES256 encryption driver for character devices
 - Thanks to [kokke/tiny-AES-c](https://github.com/kokke/tiny-AES-c)
