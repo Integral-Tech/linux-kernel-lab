@@ -1,0 +1,13 @@
+steps:
+  build:
+    when:
+      branch: [main]
+      event: [push, pull_request]
+    image: debian
+    directory: Lab1/module
+    environment:
+      CFLAGS: -Werror
+    commands: |
+      apt update
+      apt install -y build-essential linux-headers-$(uname -r)
+      make -j$(nproc)
