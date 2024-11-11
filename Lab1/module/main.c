@@ -10,8 +10,6 @@
 #include <linux/module.h>
 #include <linux/string.h>
 
-#define CDEV_NAME "encrypt"
-
 static dev_t dev;
 static struct cdev *cdev;
 static unsigned dev_count = 1;

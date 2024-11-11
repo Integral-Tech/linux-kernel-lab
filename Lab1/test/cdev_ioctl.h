@@ -7,6 +7,8 @@
 
 #include <stdint.h>
 
+#define CDEV_PATH "/dev/encrypt"
+
 #define AES256_KEYLEN 32
 
 typedef struct _aes256_key_t {

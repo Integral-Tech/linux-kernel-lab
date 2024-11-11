@@ -8,8 +8,6 @@
 #include <string.h>
 #include <sys/ioctl.h>
 
-#define CDEV_PATH "/dev/encrypt"
-
 int main()
 {
 	__attribute__((cleanup(fd_close))) int fd = open(CDEV_PATH, O_RDWR);

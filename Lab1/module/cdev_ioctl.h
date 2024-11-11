@@ -7,6 +7,8 @@
 
 #include "aes/aes.h"
 
+#define CDEV_NAME "encrypt"
+
 typedef struct _aes_key_t {
 	uint8_t key[AES_KEYLEN];
 } aes_key_t;
