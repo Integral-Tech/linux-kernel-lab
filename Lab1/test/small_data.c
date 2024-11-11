@@ -3,17 +3,16 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 #include "cdev_ioctl.h"
+#include "cleanup.h"
 #include <fcntl.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <sys/ioctl.h>
-#include <unistd.h>
 
 #define CDEV_PATH "/dev/encrypt"
 
 int main()
 {
-	int fd = open(CDEV_PATH, O_RDWR);
+	__attribute__((cleanup(fd_close))) int fd = open(CDEV_PATH, O_RDWR);
 	if (fd < 0) {
 		printf("Failed to open device %s\n", CDEV_PATH);
 		return -1;
@@ -33,7 +32,6 @@ int main()
 			 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff };
 
 	write(fd, in, sizeof(in));
-	close(fd);
 
 	fd = open(CDEV_PATH, O_RDWR);
 	if (fd < 0) {
@@ -43,7 +41,8 @@ int main()
 
 	ioctl(fd, SET_DECRYPT);
 	ioctl(fd, START_READ);
-	uint8_t *out = malloc(sizeof(in));
+
+	__attribute__((cleanup(free_ptr))) uint8_t *out = malloc(sizeof(in));
 	if (read(fd, out, sizeof(in)) < 0) {
 		printf("An error occurred while reading from device %s\n",
 		       CDEV_PATH);
@@ -63,7 +62,5 @@ int main()
 		printf("%02x ", *ptr);
 
 	putchar('\n');
-	free(out);
-	close(fd);
 	return 0;
 }

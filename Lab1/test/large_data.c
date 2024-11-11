@@ -3,18 +3,16 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 #include "cdev_ioctl.h"
+#include "cleanup.h"
 #include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
-#include <unistd.h>
 
 #define CDEV_PATH "/dev/encrypt"
 
 int main()
 {
-	int fd = open(CDEV_PATH, O_RDWR);
+	__attribute__((cleanup(fd_close))) int fd = open(CDEV_PATH, O_RDWR);
 	if (fd < 0) {
 		printf("Failed to open device %s\n", CDEV_PATH);
 		return -1;
@@ -30,17 +28,15 @@ int main()
 	ioctl(fd, SET_ENCRYPT);
 	ioctl(fd, START_WRITE);
 
-	FILE *input_file = fopen("2M_data_input", "rb");
+	__attribute__((cleanup(file_close))) FILE *input_file = fopen("2M_data_input", "rb");
 	fseek(input_file, 0, SEEK_END);
 	size_t file_size = ftell(input_file);
 	fseek(input_file, 0, SEEK_SET);
 
-	uint8_t *buffer = malloc(file_size);
+	__attribute__((cleanup(free_ptr))) uint8_t *buffer = malloc(file_size);
 	fread(buffer, sizeof(uint8_t), file_size, input_file);
-	fclose(input_file);
 
 	write(fd, buffer, file_size);
-	close(fd);
 
 	fd = open(CDEV_PATH, O_RDWR);
 	if (fd < 0) {
@@ -60,11 +56,8 @@ int main()
 	printf("Successed to read from device %s, fd = %d\n", CDEV_PATH, fd);
 	ioctl(fd, RESET);
 
-	FILE *output_file = fopen("2M_data_output", "wb");
+	__attribute__((cleanup(file_close))) FILE *output_file = fopen("2M_data_output", "wb");
 	fwrite(buffer, sizeof(uint8_t), file_size, output_file);
-	fclose(output_file);
 
-	free(buffer);
-	close(fd);
 	return 0;
 }
